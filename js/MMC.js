@@ -28,7 +28,7 @@ function Counter(s){
         x = z[i].match(/[A-Z][a-z]{0,2}/);
         y = z[i].split(/[A-Z][a-z]{0,2}/)[1];
     	tmp += (PeriodicTable[x]*y);
-        console.log(x + ", " + y + ", " + tmp);
+        //console.log(x + ", " + y + ", " + tmp);
     }
     return tmp;
 }
@@ -37,7 +37,7 @@ function LevelCount(s){
     var tmp, x = 0;
     for( var i = 0 ; i < s.length ; i++ ){
     	tmp = s[i].split(RegLC);
-        console.log(tmp);
+        //console.log(tmp);
 		x += (Counter(tmp[0]) * tmp[tmp.length - 1]);
     }
     return x;
@@ -47,10 +47,10 @@ function main(s){
     var tmp, x = 0;
 	if ((tmp = s.match(RegL2)) !== null) {
 		x += LevelCount(tmp);
-		console.log(x);
+		//console.log(x);
     }
     x += Counter(s.replace(RegL2, ""));
-		console.log(x);
+		//console.log(x);
     return x;
 }
 console.log(main("C6H12O6"));
