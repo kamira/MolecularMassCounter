@@ -1,5 +1,5 @@
 // *********************************************
-// ****    MolecularMassCounter Ver.1.00    ****
+// ****    MolecularMassCounter Ver.1.01    ****
 // *********************************************
 
 
@@ -26,7 +26,7 @@ function Counter(s){
     z = s.match(RegL1);
     for (var i = 0; i < z.length ; i++){
         x = z[i].match(/[A-Z][a-z]{0,2}/);
-        y = z[i].split(/[A-Z][a-z]{0,2}/)[1];
+        y = (( z[i].split(/[A-Z][a-z]{0,2}/)[1] > 0 ) ? z[i].split(/[A-Z][a-z]{0,2}/)[1] : 1);
     	tmp += (PeriodicTable[x]*y);
         //console.log(x + ", " + y + ", " + tmp);
     }
