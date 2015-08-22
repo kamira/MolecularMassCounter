@@ -6,6 +6,8 @@
 // v 1.01
 //    - 修正單元素問題
 
+
+//元素週期表
 var PeriodicTable = {
     "H"  : 1.008 ,                                                                                                                                                                                                                                                 "He" : 4.003 , 
     "Li" : 6.941 , "Be" : 9.012 ,                                                                                                                                                       "B"  : 10.81 , "C"  : 12.01 , "N"  : 14.01 , "O"  : 16.00 , "F"  : 19.00 , "Ne" : 20.18 , 
@@ -18,42 +20,40 @@ var PeriodicTable = {
                                   "La" : 138.9 , "Ce" : 140.1 , "Pr" : 140.9 , "Nd" : 144.2 , "Pm" : 144.9 , "Sm" : 150.4 , "Eu" : 152.0 , "Gd" : 157.3 , "Tb" : 158.9 , "Dy" : 162.5 , "Ho" : 164.9 , "Er" : 167.3 , "Tm" : 168.9 , "Lu" : 175.0 , 
                                   "Ac" : 227.0 , "Th" : 232.0 , "Pa" : 231.0 , "U"  : 238.0 , "Np" : 237.1 , "Pu" : 244.1 , "Am" : 243.1 , "Cm" : 247.1 , "Bk" : 247.1 , "Cf" : 252.1 , "Es" : 252.1 , "Md" : 258.1 , "No" : 259.1 , "Lr" : 262.1 
 };
-var RegL1 = /[A-Z][a-z]{0,2}\d*/g;
-var RegL2 = /(\([\w\d^)]*\)\d)/g; 
-var RegLC = /\)/;
-var m, n;
- 
+var RegL1 = /[A-Z][a-z]{0,2}\d*/g;  //分割元素
+var RegL2 = /(\([\w\d^)]*\)\d)/g;   //分割括號
+var RegLC = /\)/;                   //分割括號外數
+
+
+//單層計算 Step - 3
 function Counter(s){
     var tmp = 0, x, y, z;
-    console.log(s);
     z = s.match(RegL1);
     for (var i = 0; i < z.length ; i++){
         x = z[i].match(/[A-Z][a-z]{0,2}/);
-        y = (( z[i].split(/[A-Z][a-z]{0,2}/)[1] > 0 ) ? z[i].split(/[A-Z][a-z]{0,2}/)[1] : 1);
+        var t =  z[i].split(/[A-Z][a-z]{0,2}/)[1];
+        y = (( t > 0 ) ? t : 1);
     	tmp += (PeriodicTable[x]*y);
-        //console.log(x + ", " + y + ", " + tmp);
     }
     return tmp;
 }
 
+//雙層計算 Step - 2
 function LevelCount(s){
     var tmp, x = 0;
     for( var i = 0 ; i < s.length ; i++ ){
     	tmp = s[i].split(RegLC);
-        //console.log(tmp);
 		x += (Counter(tmp[0]) * tmp[tmp.length - 1]);
     }
     return x;
 }
 
-function main(s){
+//分割層 Step - 1
+function MMCmain(s){
     var tmp, x = 0;
 	if ((tmp = s.match(RegL2)) !== null) {
 		x += LevelCount(tmp);
-		//console.log(x);
     }
     x += Counter(s.replace(RegL2, ""));
-		//console.log(x);
-    return x;
+    return x ? x : "含有不存在元素";
 }
-console.log(main("C6H12O6"));

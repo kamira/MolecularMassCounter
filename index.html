@@ -16,12 +16,12 @@ input {
 }
 .InputLayer {
     text-align:center;
-    Height:20%;
+    height:20%;
     padding:25px;
 }
 .ResultLayer {
     background: rgba(57, 135, 251, 0.68);
-    Height:60%;
+    height:60%;
     
 }
 .Outter {
@@ -47,18 +47,24 @@ p {
     padding: 20px;
     margin:0;
 }
+#InputVal {
+    font-size: 36px;
+}
   </style>
+}
   
 
 
 <script type="text/javascript">//<![CDATA[ 
-$( "#In" ).bind('keypress', function(e) {
-    var code = e.keyCode || e.which;
-        if(code == 13) { //Enter keycode
-            var t = $("#In").val();
-            $("#InputVal").html(t);
-            $("#Output").html(main(t));
-     }
+$(window).load(function(){
+    $( "#In" ).bind('keypress', function(e) {
+        var code = e.keyCode || e.which;
+            if(code == 13) { //Enter keycode
+                var t = $("#In").val();
+                $("#InputVal").html(t);
+                $("#Output").html(MMCmain(t));
+         }
+    });
 });
 //]]>  
 
