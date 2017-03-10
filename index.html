@@ -55,11 +55,13 @@ p {
 
 
 <script type="text/javascript">//<![CDATA[ 
-$("#In").keyup(function(){
-      var t = $("#In").val();
-      $("#InputVal").html(t);
-      $("#Output").html(molecularMassCounter(t));
-});
+window.onload = function(){
+    $("#In").keyup(function(){
+        var t = $("#In").val();
+        $("#InputVal").html(t);
+        $("#Output").html(molecularMassCounter(t));
+    });
+}
 //]]>  
 
 </script>
