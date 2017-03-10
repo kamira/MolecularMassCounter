@@ -3,6 +3,8 @@
 // *********************************************
 
 // ** Update **
+// v 1.11 hotfix
+//
 // v 1.10
 //    - 模組化
 //    - 封裝
@@ -45,16 +47,17 @@ function molecularMassCounter( source ){
     function getSameElementMass( src ){
         var elementName, howMuchSameElement, tmp_RegExpSplit;
         
-        tmp_RegExpSplit = src.split( regExp_GetElementNameAndHowMuchElement );
+        tmp_RegExpSplit = src.match( regExp_GetElementNameAndHowMuchElement );
         elementName = tmp_RegExpSplit[ 0 ];
-        howMuchSameElement = tmp_RegExpSplit[ 1 ];
+        tmp_RegExpSplit = src.split( regExp_GetElementNameAndHowMuchElement );
+        howMuchSameElement = tmp_RegExpSplit[ 1 ] || 1;
 
         return getElementMass( elementName ) * howMuchSameElement;
     }
 
     //切割出單種元素
     function splitElement( src ){
-        return src.match( regExp_getElement );
+        return src.match( regExp_GetElement );
     }
 
     //計算單層分子式(無括號)
@@ -96,9 +99,9 @@ function molecularMassCounter( source ){
         tmpFormula = src.replace( regExp_GetFormula , "" );
         sumMass += getOneLevelFormulaMass( tmpFormula );
         
-        return sumMass ? sumMass : "含有不存在元素";
+        return sumMass > 0 ? sumMass : "含有不存在元素";
     }
-
-    main( source );
+    
+    return main( source );
 
 }
