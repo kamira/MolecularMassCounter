@@ -3,7 +3,7 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>分子量計算機</title>
   
-  <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="js/MMC.js"></script>
 
   <style type="text/css">
@@ -55,15 +55,10 @@ p {
 
 
 <script type="text/javascript">//<![CDATA[ 
-$(window).load(function(){
-    $( "#In" ).bind('keypress', function(e) {
-        var code = e.keyCode || e.which;
-            if(code == 13) { //Enter keycode
-                var t = $("#In").val();
-                $("#InputVal").html(t);
-                $("#Output").html(MMCmain(t));
-         }
-    });
+$("#In").keyup(function(){
+      var t = $("#In").val();
+      $("#InputVal").html(t);
+      $("#Output").html(molecularMassCounter(t));
 });
 //]]>  
 
