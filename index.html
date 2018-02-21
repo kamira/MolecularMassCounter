@@ -57,9 +57,9 @@ p {
 <script type="text/javascript">//<![CDATA[ 
 window.onload = function(){
     $("#In").keyup(function(){
-        var t = $("#In").val();
-        $("#InputVal").html(t);
+        var t = $(this).val();
         $("#Output").html(molecularMassCounter(t));
+        $(this).width( t.length()*10 + 'px' );
     });
 }
 //]]>  
@@ -70,11 +70,8 @@ window.onload = function(){
 </head>
 <body>
 <div class="Outter">
-    <div class="InputLayer"> <input id="In" type="text" name="Mass"/> </div>
     <div class="ResultLayer">
-        <p id="InputVal">
-            
-        </p>
+        <div class="InputLayer"> <input id="In" type="text" name="Mass"/> </div>
         <p>分析結果：<span id="Output"></span></p></div>
     
 </div>
