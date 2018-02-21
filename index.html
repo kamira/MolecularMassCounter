@@ -59,8 +59,7 @@ window.onload = function(){
     $("#In").keyup(function(){
         var t = $(this).val();
         $("#Output").html(molecularMassCounter(t));
-        $(this).width( modWidth );
-        modWidth = t.length()*10 + 'px';
+        $(this).width( t.length()*10 + 'px' );
     });
 }
 //]]>  
