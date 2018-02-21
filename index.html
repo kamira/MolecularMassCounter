@@ -40,6 +40,8 @@ input {
     background: rgba(35, 112, 227, 0.83);
     color: white;
     text-shadow: 0px 0px 5px #777;
+    font-weight: bolder;
+    font-size: xx-large;
 }
 #InputVal {
     font-size: 36px;
@@ -51,10 +53,12 @@ input {
 <script type="text/javascript">//<![CDATA[ 
 window.onload = function(){
     $("#In").keyup(function(){
-        var t = $(this).val();
+        var t = $("#In").val();
         $("#Output").html(molecularMassCounter(t));
-        $(this).width( t.length()*10 + 'px' );
+        $(this).stop().animate({ width: $(this).val().length*7 },100);
     });
+  
+  
 }
 //]]>  
 
